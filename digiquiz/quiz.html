@@ -1,0 +1,129 @@
+{% extends "basedesign.html" %}
+
+{% block content %}
+<div id="quizinfobsk">
+	<h2>
+		Basics
+	</h2>
+	<table cellspacing="10px;">
+		<tr>
+			<td>
+				Name	
+			</td>
+			<td>
+				{{quiz.name}}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				StartDate	
+			</td>
+			<td>
+				{{quiz.startDate}}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				EndDate	
+			</td>
+			<td>
+				{{quiz.endDate}}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Random
+			</td>
+			<td>
+				<input type="checkbox" checked="{{quiz.random}}" disabled="true" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Time	
+			</td>
+			<td>
+				{{quiz.time}} minutes
+			</td>
+		</tr>
+	</table>
+</div>
+<div>
+	<h2 style="border-bottom: 1px solid #dddddd; padding-bottom: 10px;">
+		Descrpition
+	</h2>
+	<div>
+		{{quiz.description}}
+	</div>
+</div>
+<div>
+	<div>
+	<h2>Section</h2>
+	<a href="javascript:void(0)" onclick="getsection()">Add/Edit</a>
+	</div>
+	
+	<div id="sectiondetails">
+		{% if sections %}
+	<table border="2" width="100%" style="text-align:center;border-collapse:collapse">
+		<tr>
+			<th>
+				Name
+			</th>
+			<th>
+				No Of Questions
+			</th>
+			<th>
+				Add Question
+			</th>
+		</tr>
+	{% for section in sections %}
+		<tr>
+			<td>
+				{{section.name}}
+			</td>
+			<td>
+				{{ section.noOfQues }}
+			</td>
+			<td>
+				<a href="/addquestion/{{section.sectionId}}">Add</a>
+			</td>
+		</tr>
+	
+	{% endfor %}
+	</table>
+	{% endif %}
+	</div>
+	
+</div>
+<div>
+	<h2>Audience</h2>
+</div>
+<style type="text/css">
+	#quizinfobsk{
+		margin: auto;
+		width: auto;
+	}
+	h{
+		border-bottom: 1px solid #ddd;
+	}
+</style>
+<script>
+function getsection(){
+	$.ajax({
+	    type: 'GET',
+	    url: '/addsection/{{quiz.quizId}}',
+	    success: function(data) {
+	       	$("#sectiondetails").html(data)
+	            },
+	    error: function(request, status, error) {
+	       alert("error hai gaya")
+	        return false;
+	    },
+	    complete: function() {
+	        //do something
+	    }
+	});
+
+}
+</script>
+{% endblock %}

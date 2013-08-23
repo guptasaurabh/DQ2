@@ -1,0 +1,75 @@
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<div>
+	<form method="post" action="">
+    {{ formset.management_form }}
+        {% for form in formset %}
+        <div>
+        {{ form }}
+        </div>
+        {% endfor %}
+    
+</form>
+<!-- {{formset}} -->
+<!-- <div class="section_add_empty" id="option_empty"></div>
+<div class="add-row">
+	<input type="button" value="Add" id="addsection" onclick="addsection()"/>
+</div>
+</div>
+<script type="text/javascript">	
+	function addsection(){
+	$.ajax({
+	    type: 'POST',
+	    url: 'addsec',
+	     data: {
+	         total:$("#form-TOTAL_FORMS").val(),
+	     },
+	    success: function(data) {
+	    	$("#id_form-TOTAL_FORMS").val(parseInt($("#id_form-TOTAL_FORMS").val())+1)
+	    	$('.section_add_empty').addClass('id_form-1-sectionId').removeClass('IsBestAnswer');
+	       	$('.section_add_empty').class='id_form-1-sectionId'
+	       	$("#option_empty").html(data)
+	            },
+	    error: function(request, status, error) {
+	       alert("error hai gaya")
+	        return false;
+	    },
+	    complete: function() {
+	        //do something
+	    }
+	});
+
+}
+</script> --> 
+
+	<!-- <tr>
+		<th>
+			<label for="id_form-{{total}}-name">Name:</label>
+		</th>
+		<td>
+			<input id="id_form-{{total}}-name" maxlength="20" name="form-1-name" type="text" />
+			<input id="id_form-{{total}}-sectionId" name="form-{{total}}-sectionId" type="hidden" />
+		</td>
+	</tr>
+<div id="option_empty"></div> -->
+
+
+<script src="/static/jquery.formset.js"></script>
+	{{quizid}}
+    <form method="post" action="/addsection/{{ quizid }}">
+            {% for form in formset.forms %}
+            <div id="{{ form.prefix }}-row" >
+            	{{form}}
+          </div> 
+            {% endfor %}
+            <p>
+                {{ formset.management_form }}
+                <input type="submit" value="Submit" />
+            </p>
+        </form>
+       <script type="text/javascript">
+		    $(function() {
+		        $('form div').formset({
+		            extraClasses: ['row1', 'row2', 'row3']
+		        })
+		    })
+		</script>

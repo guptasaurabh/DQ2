@@ -1,0 +1,76 @@
+<style type="text/css">
+	.rightform{
+		float: right;
+		width:300px;
+		border-style: solid;
+		border-width:1px;
+		border-color:#CCCCCC;
+		margin-top: 20px;
+	}
+	.leftdata{
+		float: left;
+		width: 400px;
+		
+		
+	}
+	#content{
+		clear: both	;
+		overflow:auto; 
+	}
+	#formbox{
+		padding: 20px;
+		
+	}
+	.labels{
+		margin-top: 5px;
+	}
+</style>
+{% extends "basedesign.html" %}
+
+{% block content %}
+	<div class="rightform">
+		<div>
+			<div class="boxheader">
+			SignIn
+		</div>
+		<div id="formbox">
+			<form action="login" method="post">
+					<table style="width: 100%;border-collapse:separate">
+					 {% csrf_token %}
+						 <tr class="labels">
+						 	<td>
+						 		<label>Username</label>
+						 	</td>
+						 </tr>
+						 <tr style="width: 100%;">
+						 	<td >
+						 		<input type="text" name="username" style="width: 80%;" />
+						 	</td>
+						 </tr>
+						 <tr class="labels">
+						 	<td>
+						 		<label>Password</label>
+						 	</td>
+						 </tr>
+						 <tr>
+						 		<td>
+						 			<input type="password" name="password" style="width: 80%;" />
+						 		</td>
+						 </tr>
+						 <tr class="labels">
+						 	<td>
+						 		<input type="submit" value="SignIn" style="background: #303030;color:#DEDEDE;float: right;height: 30px;border: none;margin-right: 20%" />
+						 	</td>
+						 </tr>
+				
+					</table>
+			</form>
+		</div>
+	</div> 
+	</div>
+	<div class="leftdata">
+		Lorem ipsum
+	</div>
+	
+	
+{% endblock %}

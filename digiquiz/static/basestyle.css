@@ -29,13 +29,14 @@ body{
 	height:400px;
 	border:1px double #cccccc;
 	display:none;
+	
 }
 .boxheader{
-	background:#303030;
-	height: 30px; 
+	background:#dedede;
+	height: 20px; 
 	text-align: center;
-	color:#DEDEDE;
-	font-size: 20px;
+	color:#303030;
+	font-size: 15px;
 	padding: 10px;
 }
 a{
@@ -71,11 +72,14 @@ a{
 	
 }
 #content{
-	background-color: #FFFF70;
+	background-color: #fefefe;
 	width: 960px;
 	min-height: 20px;
 	margin: auto;	
+	padding: 5px;
+	font-family: arial, tahoma, verdana, sans-serif;
 }
+
 
 .footer {
    position:fixed;

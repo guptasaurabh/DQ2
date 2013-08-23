@@ -1,11 +1,11 @@
 from django.contrib import admin
-from digiquiz.models import Quiz,UserProfile,Department,QuizUser,Question,Options
+from digiquiz.models import Quiz,UserProfile,Department,QuizUser,Question,Option,Section
 
 #admin.site.register(Quiz)
 admin.site.register(UserProfile)
 admin.site.register(Department)
 admin.site.register(QuizUser)
-#admin.site.register(Options)
+#admin.site.register(Section)
 
 
 class QuestionInline(admin.StackedInline):
@@ -13,15 +13,24 @@ class QuestionInline(admin.StackedInline):
 
 
 class OptionsInline(admin.StackedInline):
-    model = Options
-    
+    model = Option
 
-class QuizAdmin(admin.ModelAdmin):
+class SectionAdmin(admin.ModelAdmin):
     inlines = [QuestionInline]
     
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [OptionsInline]
 
-admin.site.register(Quiz,QuizAdmin)
+class SectionsInLine(admin.StackedInline):
+    model=Section
+    
+class QuizAdmin(admin.ModelAdmin):
+    inlines=[SectionsInLine]
+
+# admin.site.register(Quiz,QuizAdmin)
 
 admin.site.register(Question,QuestionAdmin)
+
+admin.site.register(Quiz,QuizAdmin)
+
+admin.site.register(Section, SectionAdmin)

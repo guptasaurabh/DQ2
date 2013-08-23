@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django import forms
 from django.forms import ModelForm
+
 # Create your models here.
 
 class Department(models.Model):
@@ -18,19 +19,25 @@ class UserProfile(models.Model):
     
 class Quiz(models.Model):
     quizId=models.CharField(max_length=10, primary_key=True)
+    name=models.CharField(max_length=20)
     startDate=models.DateField()
     endDate=models.DateField()
     random=models.BooleanField()
     time=models.IntegerField(null=True)
     createdBy=models.ForeignKey(User)
-    description=models.CharField(max_length=500,blank=True,null=True) 
+    description=models.CharField(max_length=500,blank=True,null=True)
+    image=models.FileField(upload_to='quiz')
     def __unicode__(self):
-        return self.quizId
+        return self.name
     
 class Section(models.Model):
     quizId=models.ForeignKey(Quiz)
     name=models.CharField(max_length=20)
+    marks=models.IntegerField("Marks")
+    negative=models.IntegerField("Negative")
     sectionId=models.CharField(max_length=10,primary_key=True)
+    def __unicode__(self):
+        return self.name
     
     
 
@@ -44,8 +51,8 @@ class Question(models.Model):
     question_id=models.CharField(max_length=10)
     section=models.ForeignKey(Section)
     question_text=models.CharField(max_length=500)
-    marks=models.IntegerField(10)
-    negative=models.IntegerField(10)
+    marks=models.IntegerField("Marks")
+    negative=models.IntegerField("Negative")
     starred=models.BooleanField()
     data_path=models.FilePathField(null=True,blank=True)
     def __unicode__(self):
@@ -57,7 +64,7 @@ class Option(models.Model):
     right=models.BooleanField()
     question=models.ForeignKey(Question)
     def __unicode__(self):
-        return self.optionDescription
+        return self.optionText
   
 
 
@@ -80,5 +87,11 @@ class QuizForm(ModelForm):
     class Meta:
         model = Quiz
         exclude = ['createdBy','quizId']
-       
-    
+        widgets = {
+            'startDate':forms.DateInput(),
+        }
+
+class QuestionForm(ModelForm):
+    class Meta:
+        model=Question
+        exclude=['questionId','section']    

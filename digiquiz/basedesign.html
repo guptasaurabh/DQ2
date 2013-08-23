@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="/static/basestyle.css" />
     <title>{% block title %}My amazing site{% endblock %}</title>
      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    
      
 </head>
 
@@ -16,9 +17,7 @@
 				</div>
 				<div class="topheader-options">
 					 {% if user.username %}
-						{{ user.username }} | My Account | <a href="{% url 'auth_logout' %}">Logout</a>
-					 {% else %}
-						<a id="login" href="#">SignIn</a> | Register
+						{{ user.username }} | My Account | <a href="{% url 'logout' %}">Logout</a>
 					 {% endif %}
 				</div>
 			</div>
@@ -53,5 +52,6 @@
      	});
      	
      </script>
+      <script src="/static/test.js"></script>
 </body>
 </html>

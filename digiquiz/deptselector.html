@@ -1,0 +1,18 @@
+{% load extratags %}
+ 
+{% set a = 3 %}
+	{% for key, value in subdepts.items %}
+	<h4>{{key.name}}</h4>
+	<select name="department_{{next}}{{i}}" multiple="multiple" onchange="getsubsubdepartment({{n}}{{i}})" >
+			{% for j in value %}
+				<option value="{{j}}">{{j}}</option>				
+			{% endfor %}
+	</select>
+	{% set i = i.add:1 %}
+	<div id="subdepartment_{{next}}{{i}}">
+			
+	</div>
+	{% endfor %}
+		
+
+	

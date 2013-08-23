@@ -1,1 +1,58 @@
+
 {% extends "basedesign.html" %}
+
+{% block content %}
+
+<!-- <form>
+	<label for="name">Name</label>
+	<input type="text" name="name"/>
+	<label for="description">Description</label>
+	<textarea name="description"></textarea>
+	<label for="startdate">StartDate</label>
+	<input type="date" name="startdate"/>
+	<label for="enddate">EndDate</label>
+	<input type="date" name="Enddate"/>
+	<input type="number" name="time" /> 
+	<!-- <div>
+		Select the Department
+		<div>
+			<select id="department_11" onchange="getsubsubdepartment(1,1)" multiple="multiple">
+				{% for i in deptlist %}
+					<option value="{{i.id}}">{{i}}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div id="subdepartment_11">
+			
+		</div>
+		
+	 </div>-->
+	
+<!--</form> -->
+<form action="createquiz" method="post"  enctype="multipart/form-data">
+	<table>
+		{% for field in form %}
+   		<tr>
+			<td>
+				{{ field.label_tag }} 
+			</td>
+			<td>
+				{{ field }}
+			</td>
+		</tr>
+		<tr>
+			<td>				
+			</td>
+			<td>
+				{{ field.errors }}
+			</td>
+		</tr>
+		 {% endfor %}
+	</table>
+	<input type="submit" />
+</form>
+
+
+
+
+{% endblock %}
